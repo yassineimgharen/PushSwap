@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_to_top.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 16:03:42 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/17 12:54:04 by yaimghar         ###   ########.fr       */
+/*   Created: 2025/10/15 14:38:45 by yaimghar          #+#    #+#             */
+/*   Updated: 2025/12/17 13:52:52 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../libft.h"
 
-void	move_to_top_a(t_stack **a, int pos, int size)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (pos <= size / 2)
-	{
-		while (pos-- > 0)
-			ra(a);
-	}
-	else
-	{
-		while (pos++ < size)
-			rra(a);
-	}
-}
+	size_t	i;
 
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}

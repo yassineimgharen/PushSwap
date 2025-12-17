@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/17 20:00:29 by yaimghar          #+#    #+#             */
+/*   Updated: 2025/12/17 20:12:40 by yaimghar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	exit_error(t_stack **a, char **split)
@@ -59,19 +71,18 @@ int main(int argc, char **argv)
 
     a = NULL;
     b = NULL;
-    if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
+    if (argc == 1)
         return (0);
-
+    if (argc == 2 && argv[1][0] == '\0')
+        exit_error(&a, NULL);
     parse_args(argc, argv, &a);
-
     if (is_sorted(a))
     {
         free_stack(&a);
         return (0);
     }
-    sort_stack(&a, &b); 
+    sort_stack(&a, &b);
     free_stack(&a);
     free_stack(&b);
     return (0);
 }
-

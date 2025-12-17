@@ -1,0 +1,13 @@
+# - Python Interpreter: This is the program (like python3) that reads your Python code,
+#                      compiles it to bytecode, and runs it.
+#                      It manages the whole process of executing your .py files.
+
+# - PVM (Python Virtual Machine): This is a part of the interpreter. 
+#                             After your code is compiled to bytecode, 
+#                             the PVM executes that bytecode. 
+#                             It acts as a virtual computer that understands Python’s bytecode instructions.
+
+#The format() method in Python is used to insert values into a string at positions marked by curly braces {}.
+
+# When you run a Python file, Python sets a special variable called name.
+# If you run the file directly (like python myfile.py), name is "main".

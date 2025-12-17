@@ -6,13 +6,13 @@
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 14:07:11 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/15 19:08:54 by yaimghar         ###   ########.fr       */
+/*   Updated: 2025/12/17 20:08:10 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int find_min_pos(t_stack *a)
+int find_min_pos(t_stack *a)
 {
 	t_stack *tmp;
 	int (min_pos), (min_value), (pos);
@@ -34,95 +34,105 @@ static int find_min_pos(t_stack *a)
 	return (min_pos);
 }
 
-// a smaller biger than b or min value in a (index not value)
-static int find_target_pos(t_stack *a, int b_value)
+int	get_target(int num, t_stack *a)
 {
-	t_stack *tmp;
-	int (target_index), (value), (pos);
-	target_index = 0;
-	value = 2147483647;
-	pos = 0;
-	tmp = a;
-	while (tmp)
+	int	i;
+	int	max;
+	int	target_index;
+	t_stack *acc;
+
+	target_index = -1;
+	i = 0;
+	max = 2147483647;
+	acc = a;
+	while (acc)
 	{
-		if (tmp->value > b_value && tmp->value < value)
+		if (num < acc->value && acc->value < max)
 		{
-			value = tmp->value;
-			target_index = pos;
+			max = acc->value;
+			target_index = i;
 		}
-		pos++;
-		tmp = tmp->next;
+		i++;
+		acc = acc->next;
 	}
-	if (value == 2147483647)
+	if (target_index == -1)
 		return (find_min_pos(a));
 	return (target_index);
 }
-static int calc_cost(int pos, int size)
-{
-    if (pos <= size / 2)
-        return (pos);
-    return (size - pos);
-}
 
-static int find_cheapest_pos(t_stack *a, t_stack *b)
+void	assign_cost(t_stack *a, t_stack *b)
 {
-	int (size_b), (size_a), (pos_b), (cost_b), (cost_a), (min_cost), (cheapest_pos), (total), (target_pos);
-	pos_b = 0;
-	size_b = stack_size(b);
+	int i;
+	int target;
+	int size_a;
+	int size_b;
+
+	i = 0;
 	size_a = stack_size(a);
-	min_cost = 2147483647;
-	cheapest_pos = 0;
+	size_b = stack_size(b);
 	while (b)
 	{
-		cost_b = calc_cost(pos_b, size_b);
-		target_pos = find_target_pos(a, b->value);
-		cost_a = calc_cost(target_pos, size_a);	
-		total = cost_a + cost_b;
-		if (total < min_cost)
-		{
-			min_cost = total;
-			cheapest_pos = pos_b;
-		}
-		pos_b++;
+		target = get_target(b->value, a);
+		if (target <= (size_a/2))
+			b->cost_a = target;
+		else 
+			b->cost_a = -(size_a - target);
+		if (i <= (size_b/2))
+			b->cost_b = i;
+		else
+			b->cost_b = -(size_b-i);
+		i++;
 		b = b->next;
 	}
-	return (cheapest_pos);
 }
 
-static void do_cheapest_move(t_stack **a, t_stack **b)
+int ft_compute_cost(int cost_a, int cost_b)
 {
-	t_stack *tmp;
-
-	int (b_pos), (pos), (value), (target_pos);
-	value = 0;
-	pos = 0;
-	b_pos = find_cheapest_pos(*a, *b);
-	tmp = *b;
-	while (tmp)
+	if ((cost_a >= 0 && cost_b >= 0) || (cost_a < 0 && cost_b < 0))
 	{
-		if (pos == b_pos)
-		{
-			value = tmp->value;
-			break ;
-		}
-		pos++;
-		tmp = tmp->next;
+		if (ft_abs(cost_a) > ft_abs(cost_b))
+			return (ft_abs(cost_a));
+		else
+			return (ft_abs(cost_b));
 	}
-	target_pos = find_target_pos(*a, value);
-	move_to_top_b(b, b_pos, stack_size(*b));
-	move_to_top_a(a, target_pos, stack_size(*a));
-	pa(a, b);
+	else
+		return (ft_abs(cost_a) + ft_abs(cost_b));
+}
+
+t_stack *get_min_cost(t_stack *b)
+{
+	int	max;
+	int	cost;
+	t_stack	*node;
+	
+	max = 2147483647;
+	while (b)
+	{
+		cost = ft_compute_cost(b->cost_a, b->cost_b);
+		if (cost < max)
+		{
+			node = b;
+			max = cost;
+		}
+		b = b->next;
+	}
+	return (node);
 }
 
 
 void	sort_big(t_stack **a, t_stack **b)
 {
+	t_stack *node;
 	int min_pos;
 	while (stack_size(*a) > 3)
 		pb(a, b);
 	sort_three(a);
 	while (*b)
-		do_cheapest_move(a, b);
+	{
+		assign_cost(*a, *b);
+		node = get_min_cost(*b);
+		ft_push_to_a(a, b, node);
+	}
 	min_pos = find_min_pos(*a);
 	move_to_top_a(a, min_pos, stack_size(*a));
 }

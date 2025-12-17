@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/17 13:30:39 by yaimghar          #+#    #+#             */
+/*   Updated: 2025/12/17 13:30:41 by yaimghar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -45,6 +57,10 @@ void	sort_three(t_stack **a);
 void	sort_big(t_stack **a, t_stack **b);
 
 void	move_to_top_a(t_stack **a, int pos, int size);
-void	move_to_top_b(t_stack **b, int pos, int size);
+
+// rotate_ab_push_to_a.c
+void	ft_rotate_a(t_stack **a, t_stack *node);
+void	ft_rotate_b(t_stack **b, t_stack *node);
+void	ft_push_to_a(t_stack **a, t_stack **b, t_stack *node);
 
 #endif

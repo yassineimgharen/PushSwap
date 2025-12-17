@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_to_top.c                                      :+:      :+:    :+:   */
+/*   push_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 16:03:42 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/17 12:54:04 by yaimghar         ###   ########.fr       */
+/*   Created: 2025/12/16 13:30:01 by yaimghar          #+#    #+#             */
+/*   Updated: 2025/12/16 13:30:48 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	move_to_top_a(t_stack **a, int pos, int size)
+static void    push(t_stack **src, t_stack **dst)
 {
-	if (pos <= size / 2)
-	{
-		while (pos-- > 0)
-			ra(a);
-	}
-	else
-	{
-		while (pos++ < size)
-			rra(a);
-	}
+    t_stack *temp;
+
+    if (!src || !*src)
+        return ;
+    temp = *src;
+    *src = (*src)->next;
+    temp->next = *dst;
+    *dst = temp;
 }
 
+void    pa(t_stack **a, t_stack **b)
+{
+    push(b, a);
+    ft_putstr_fd("pa\n", 1);
+}
+
+void    pb(t_stack **a, t_stack **b)
+{
+    push(a, b);
+    ft_putstr_fd("pb\n", 1);
+}

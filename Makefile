@@ -8,12 +8,18 @@ SRCS =  libft/ft_putchar_fd.c \
         libft/ft_strdup.c \
         libft/ft_strlen.c \
         libft/ft_isdigit.c \
+        libft/ft_strncmp.c \
+        libft/ft_abs.c \
         parsing.c \
-        operations.c \
+        push_operations.c \
+        swap_operations.c \
+        rotate_operations.c \
+        reverse_rotate_operations.c \
         stack_utils.c \
         sort.c \
         sort_big.c \
         move_to_top.c \
+        rotate_ab_push_to_a.c \
         main.c
 OBJS = $(SRCS:.c=.o)
 
@@ -36,4 +42,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

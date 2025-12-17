@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_to_top.c                                      :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 16:03:42 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/17 12:54:04 by yaimghar         ###   ########.fr       */
+/*   Created: 2025/12/16 13:22:34 by yaimghar          #+#    #+#             */
+/*   Updated: 2025/12/16 13:22:47 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../libft.h"
 
-void	move_to_top_a(t_stack **a, int pos, int size)
+int	ft_abs(int num)
 {
-	if (pos <= size / 2)
-	{
-		while (pos-- > 0)
-			ra(a);
-	}
-	else
-	{
-		while (pos++ < size)
-			rra(a);
-	}
+	if (num < 0)
+		num = -num;
+	return (num);
 }
-
