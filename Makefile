@@ -26,9 +26,10 @@ SRCS =  libft/ft_putchar_fd.c \
         main.c
 OBJS = $(SRCS:.c=.o)
 
-BONUS_SRC = get_next_line_bonus.c \
-        get_next_line_utils_bonus.c \
-        ft_checker_bonus.c \
+BONUS_SRC = bonus/get_next_line_bonus.c \
+        bonus/get_next_line_utils_bonus.c \
+        bonus/ft_checker_bonus.c \
+        bonus/ft_exit_error.c \
         libft/ft_strncmp.c \
         libft/ft_putchar_fd.c \
         libft/ft_putstr_fd.c \
@@ -37,12 +38,11 @@ BONUS_SRC = get_next_line_bonus.c \
         libft/ft_isdigit.c \
         libft/ft_abs.c \
         parsing.c \
-        ft_push_operations.c \
-        ft_swap_operations.c \
-        ft_rotate_operations.c \
-        ft_reverse_rotate_operations.c \
+        bonus/ft_push_operations.c \
+        bonus/ft_swap_operations.c \
+        bonus/ft_rotate_operations.c \
+        bonus/ft_reverse_rotate_operations.c \
         stack_utils.c \
-
 
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
