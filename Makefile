@@ -1,6 +1,9 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
+NAME = push_swap
+BONUS_NAME = checker
+
 SRCS =  libft/ft_putchar_fd.c \
         libft/ft_putstr_fd.c \
         libft/ft_split.c \
@@ -23,7 +26,25 @@ SRCS =  libft/ft_putchar_fd.c \
         main.c
 OBJS = $(SRCS:.c=.o)
 
-NAME = push_swap
+BONUS_SRC = get_next_line_bonus.c \
+        get_next_line_utils_bonus.c \
+        ft_checker_bonus.c \
+        libft/ft_strncmp.c \
+        libft/ft_putchar_fd.c \
+        libft/ft_putstr_fd.c \
+        libft/ft_split.c \
+        libft/ft_atoi.c \
+        libft/ft_isdigit.c \
+        libft/ft_abs.c \
+        parsing.c \
+        ft_push_operations.c \
+        ft_swap_operations.c \
+        ft_rotate_operations.c \
+        ft_reverse_rotate_operations.c \
+        stack_utils.c \
+
+
+BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
@@ -33,11 +54,16 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+bonus : $(BONUS_NAME)
+
+$(BONUS_NAME) : $(BONUS_OBJS) 
+	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
+
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
