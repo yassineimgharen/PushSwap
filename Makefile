@@ -23,6 +23,8 @@ SRCS =  libft/ft_putchar_fd.c \
         sort_big.c \
         move_to_top.c \
         rotate_ab_push_to_a.c \
+        find_min_pos.c \
+        ft_is_sorted.c \
         main.c
 OBJS = $(SRCS:.c=.o)
 
@@ -43,6 +45,7 @@ BONUS_SRC = bonus/get_next_line_bonus.c \
         bonus/ft_rotate_operations.c \
         bonus/ft_reverse_rotate_operations.c \
         stack_utils.c \
+        ft_is_sorted.c \
 
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 

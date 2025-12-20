@@ -6,7 +6,7 @@
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:28:40 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/18 13:46:01 by yaimghar         ###   ########.fr       */
+/*   Updated: 2025/12/19 09:41:08 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,48 +54,49 @@ int	ft_is_valid_instruction(char *s)
 		|| !ft_strncmp(s, "rrr\n", len));
 }
 
-
-void    add_to_stack(t_stack **a, char *str, char **split)
+void	add_to_stack(t_stack **a, char *str, char **split)
 {
-    long num;
-    if (!is_valid_number(str))
-        exit_error(a, split);
-    num = ft_atol(str);
-    if (num > 2147483647 || num < -2147483648)
-    {
-        exit_error(a, split);
-    }
-    if (has_duplicate(*a, (int)num))
-    {
-        exit_error(a, split);
-    }
-    stack_add_back(a, stack_new((int)num));
+	long	num;
+
+	if (!is_valid_number(str))
+		exit_error(a, split);
+	num = ft_atol(str);
+	if (num > 2147483647 || num < -2147483648)
+	{
+		exit_error(a, split);
+	}
+	if (has_duplicate(*a, (int)num))
+	{
+		exit_error(a, split);
+	}
+	stack_add_back(a, stack_new((int)num));
 }
 
-static void parse_args(int argc, char **argv, t_stack **a)
+static void	parse_args(int argc, char **argv, t_stack **a)
 {
-    int     i;
-    char    **split;
-    if (argc == 2)
-    {
-        i = 0;
-        split = ft_split(argv[1], ' ');
-        while (split[i])
-        {
-            add_to_stack(a, split[i], split);
-            i++;
-        }
-        free_split(split);
-    }
-    else
-    {
-        i = 1;
-        while (i < argc)
-        {
-            add_to_stack(a, argv[i], NULL);
-            i++;
-        }
-    }
+	int		i;
+	char	**split;
+
+	if (argc == 2)
+	{
+		i = 0;
+		split = ft_split(argv[1], ' ');
+		while (split[i])
+		{
+			add_to_stack(a, split[i], split);
+			i++;
+		}
+		free_split(split);
+	}
+	else
+	{
+		i = 1;
+		while (i < argc)
+		{
+			add_to_stack(a, argv[i], NULL);
+			i++;
+		}
+	}
 }
 
 int	main(int count, char **argv)
@@ -113,7 +114,7 @@ int	main(int count, char **argv)
 	while (line)
 	{
 		if (!ft_is_valid_instruction(line))
-		 return (free_stack(&stack_a), free(line), ft_error(), 1);
+			return (free_stack(&stack_a), free(line), ft_error(), 1);
 		ft_main_part_2(line, &stack_a, &stack_b);
 		free(line);
 		line = get_next_line(0);

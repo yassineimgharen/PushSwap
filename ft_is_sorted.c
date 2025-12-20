@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_is_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 13:22:34 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/19 09:48:46 by yaimghar         ###   ########.fr       */
+/*   Created: 2025/12/19 09:35:32 by yaimghar          #+#    #+#             */
+/*   Updated: 2025/12/19 09:39:01 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "push_swap.h"
 
-int	ft_abs(int num)
+int	is_sorted(t_stack *stack)
 {
-	if (num < 0)
-		num = -num;
-	return (num);
+	while (stack != NULL)
+	{
+		if (stack->next && stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }

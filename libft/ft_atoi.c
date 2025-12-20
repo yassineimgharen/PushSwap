@@ -6,7 +6,7 @@
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:19:54 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/11/27 15:13:02 by yaimghar         ###   ########.fr       */
+/*   Updated: 2025/12/19 09:49:38 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_atoi(const char *ptr)
 	i = 0;
 	res = 0;
 	sign = 1;
-
 	while (ptr[i] == 32 || (ptr[i] >= 9 && ptr[i] <= 13))
 		i++;
 	if (ptr[i] == '-' || ptr[i] == '+')

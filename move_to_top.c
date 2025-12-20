@@ -25,4 +25,3 @@ void	move_to_top_a(t_stack **a, int pos, int size)
 			rra(a);
 	}
 }
-

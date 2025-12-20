@@ -6,7 +6,7 @@
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 15:32:09 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/14 18:21:47 by yaimghar         ###   ########.fr       */
+/*   Updated: 2025/12/19 09:33:06 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,36 +21,12 @@ void	sort_three(t_stack **a)
 	first = (*a)->value;
 	second = (*a)->next->value;
 	third = (*a)->next->next->value;
-	if (first > second && first > third) //231
+	if (first > second && first > third)
 		ra(a);
 	else if (second > first && second > third)
 		rra(a);
 	if ((*a)->value > (*a)->next->value)
 		sa(*a);
-}
-
-int	get_min_pos(t_stack *stack)
-{
-	int		min;
-	int		pos;
-	int		min_pos;
-	t_stack	*tmp;
-
-	tmp = stack;
-	min = tmp->value;
-	pos = 0;
-	min_pos = 0;
-	while (tmp)
-	{
-		if (tmp->value < min)
-		{
-			min = tmp->value;
-			min_pos = pos;
-		}
-		pos++;
-		tmp = tmp->next;
-	}
-	return (min_pos);
 }
 
 void	move_min_to_top(t_stack **a, int pos, int size)
@@ -74,7 +50,7 @@ static void	sort_small(t_stack **a, t_stack **b)
 
 	while (stack_size(*a) > 3)
 	{
-		pos = get_min_pos(*a);
+		pos = find_min_pos(*a);
 		size = stack_size(*a);
 		move_min_to_top(a, pos, size);
 		pb(a, b);
