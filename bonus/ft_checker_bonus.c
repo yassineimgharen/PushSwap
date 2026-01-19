@@ -6,7 +6,7 @@
 /*   By: yaimghar <yaimghar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:28:40 by yaimghar          #+#    #+#             */
-/*   Updated: 2025/12/19 09:41:08 by yaimghar         ###   ########.fr       */
+/*   Updated: 2025/12/21 22:27:57 by yaimghar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static void	parse_args(int argc, char **argv, t_stack **a)
 	{
 		i = 0;
 		split = ft_split(argv[1], ' ');
+		if (!split[0])
+			exit_error(a, split);
 		while (split[i])
 		{
 			add_to_stack(a, split[i], split);
